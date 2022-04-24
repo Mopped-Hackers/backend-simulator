@@ -48,7 +48,7 @@ def main():
 
         print(f"ID - {sample} ->  result - {response}")
         # sleep
-        if buycounter > 60:
+        if buycounter > 10:
             url = "https://hackkosice2022.azurewebsites.net/api/v1/updateBuy"
             payload = {"gameId": sample}
             headers = {"Content-Type": "application/json"}
