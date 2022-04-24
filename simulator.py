@@ -28,6 +28,7 @@ def main():
 
     df = pd.read_csv("KNN_dataset.csv")
     mutex = 1
+    buycounter = 0;
 
     while (1):
         # select random from dataset
@@ -47,6 +48,15 @@ def main():
 
         print(f"ID - {sample} ->  result - {response}")
         # sleep
+        if buycounter > 60:
+            url = "https://hackkosice2022.azurewebsites.net/api/v1/updateBuy"
+            payload = {"gameId": sample}
+            headers = {"Content-Type": "application/json"}
+            response = requests.request("POST", url, json=payload, headers=headers)
+
+            print(f"BUY: ID - {sample} ->  result - {response}")
+            buycounter = 0
+
         time.sleep(2)
 
 if __name__ == "__main__":
